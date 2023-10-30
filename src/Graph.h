@@ -106,20 +106,21 @@ namespace csi281 {
             
             // TIP: Start by defining a frontier and putting start onto it.
             stack<V> frontier; // LIFO
+            // this might need to be stack<V, V>?
             frontier.push(start);
             
             while (!frontier.empty()) {
-                V current = frontier.pop(); // Node that is being evaluated, gotten from list of unexplored
+                V current = frontier.top(); // Node that is being evaluated, gotten from list of unexplored
 
                 // If found, just return the path
                 if (current == goal)
-                    return pathMapToPath(explored, goal);
+                    return pathMapToPath(&explored, &goal);
 
                 // Add all adjacencies of current, evaluate them
-                unordered_set<V> adjacencies = neighbors(current);
-                for (V child = adjacencies.begin(); child != adjacencies.end(); child = ) {
+                stack<V> adjacencies = neighbors(current);
+                for (V child = adjacencies.top(); adjacencies.empty() == false; adjacencies.pop(), child = adjacencies.top()) {
                     // If they already exist: don't add
-                    if (explored.find(child) != nullopt)
+                    if (explored.find(child) != explored.end())
                         continue;
                     
                     explored.insert(child);
