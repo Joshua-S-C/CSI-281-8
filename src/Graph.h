@@ -137,7 +137,7 @@ namespace csi281 {
                 }
             }
 
-            // Doesn't exist : idk if this actually needs o be fixed
+            // No path is found
             return nullopt;
         }
         
