@@ -76,7 +76,7 @@ namespace csi281 {
         // Determines whether there is an edge between *from* and *to*
         // if either is not in the graph, return false
         bool edgeExists(const V &from, const V &to) {
-            return adjacencyList[from].find(from) != adjacencyList[from].end(); // Look at above function lol
+            return adjacencyList[from].find(to) != adjacencyList[from].end(); // Look at above function lol
         }
         
         using Path = list<V>;
@@ -137,7 +137,7 @@ namespace csi281 {
                 }
             }
 
-            // Doesn't exist (this needs to be fixed)
+            // Doesn't exist : idk if this actually needs o be fixed
             return nullopt;
         }
         
@@ -150,12 +150,45 @@ namespace csi281 {
             // the start node came from nowhere, so we mark its parent as itself
             explored[start] = start;
 
-            return dfs(start, goal);
-            
-            // YOUR CODE HERE
             // TIP: Start by defining a frontier and putting start onto it.
             // TIP: Follow the pseudocode from the slides from class
             // TIP: This should be very similar to dfs
+
+            queue<V> frontier; // FIFO
+            frontier.push(start);
+
+            while (!frontier.empty()) {
+                // Node that is being evaluated, gotten from list of unexplored
+                V current = frontier.front();
+                frontier.pop();
+
+                // Does this just make it not constant
+                V _goal = goal;
+
+                // If found, just return the path
+                if (current == goal)
+                    return pathMapToPath(explored, _goal);
+
+                // Add all adjacencies of current.
+                unordered_set<V> adjacencies = neighbors(current);
+
+                // Checking each adjacent node
+                for (auto iterator = adjacencies.begin(); iterator != adjacencies.end(); iterator++) {
+                    V child = *iterator;
+
+                    // If they already exist: don't add to frontier
+                    if (explored.find(child) != explored.end())
+                        continue;
+
+
+                    explored.insert({ current, child });
+                    frontier.push(child);
+                }
+            }
+
+            // Doesn't exist (this needs to be fixed)
+            return nullopt;
+
         }
         
         // Utility function if you need it

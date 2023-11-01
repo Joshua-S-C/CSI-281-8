@@ -46,7 +46,7 @@ void printPath(list<T> &l) {
     cout << endl;
 }
 
-// 
+// Passing
 TEST_CASE( "edgeExists() Tests", "[graph]" ) {
     SECTION( "Graph w/ int tests" ) {
         Graph<int> g1 = Graph<int>();
