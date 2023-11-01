@@ -1,4 +1,4 @@
-//
+//  Joshua Sinclair Chong
 //  Graph.h
 //  
 //  Defines the Graph class.
@@ -106,24 +106,33 @@ namespace csi281 {
             
             // TIP: Start by defining a frontier and putting start onto it.
             stack<V> frontier; // LIFO
-            // this might need to be stack<V, V>?
             frontier.push(start);
             
             while (!frontier.empty()) {
-                V current = frontier.top(); // Node that is being evaluated, gotten from list of unexplored
+                // Node that is being evaluated, gotten from list of unexplored
+                V current = frontier.top();
+                frontier.pop();
+
+                // Does this just make it not constant
+                V _goal = goal;
 
                 // If found, just return the path
                 if (current == goal)
-                    return pathMapToPath(&explored, &goal);
+                    return pathMapToPath(explored, _goal);
 
-                // Add all adjacencies of current, evaluate them
-                stack<V> adjacencies = neighbors(current);
-                for (V child = adjacencies.top(); adjacencies.empty() == false; adjacencies.pop(), child = adjacencies.top()) {
-                    // If they already exist: don't add
+                // Add all adjacencies of current.
+                unordered_set<V> adjacencies = neighbors(current);
+
+                // Checking each adjacent node
+                for (auto iterator = adjacencies.begin(); iterator != adjacencies.end(); iterator++) {
+                    V child = *iterator;
+
+                    // If they already exist: don't add to frontier
                     if (explored.find(child) != explored.end())
                         continue;
                     
-                    explored.insert(child);
+                    
+                    explored.insert({ current, child });
                     frontier.push(child);
                 }
             }
@@ -140,6 +149,8 @@ namespace csi281 {
             unordered_map<V, V> explored = unordered_map<V, V>();
             // the start node came from nowhere, so we mark its parent as itself
             explored[start] = start;
+
+            return dfs(start, goal);
             
             // YOUR CODE HERE
             // TIP: Start by defining a frontier and putting start onto it.
