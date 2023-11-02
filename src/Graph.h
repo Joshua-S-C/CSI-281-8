@@ -181,8 +181,7 @@ namespace csi281 {
                     if (explored.find(child) != explored.end())
                         continue;
 
-
-                    explored.insert({ current, child });
+                    explored.insert({ child, current });
                     frontier.push(child);
                 }
             }
