@@ -113,13 +113,9 @@ namespace csi281 {
                 V current = frontier.top();
                 frontier.pop();
 
-                // Does this just make it not constant
-                V _goal = goal;
-
                 // If found, just return the path
-                // Size of path is wrong becuz it's saying that a path straight from 0 to 10 exists (in the lsat index)
                 if (current == goal)
-                    return pathMapToPath(explored, _goal);
+                    return pathMapToPath(explored, current);
 
                 // Add all adjacencies of current.
                 unordered_set<V> adjacencies = neighbors(current);
@@ -163,12 +159,9 @@ namespace csi281 {
                 V current = frontier.front();
                 frontier.pop();
 
-                // Does this just make it not constant
-                V _goal = goal;
-
                 // If found, just return the path
                 if (current == goal)
-                    return pathMapToPath(explored, _goal);
+                    return pathMapToPath(explored, current);
 
                 // Add all adjacencies of current.
                 unordered_set<V> adjacencies = neighbors(current);

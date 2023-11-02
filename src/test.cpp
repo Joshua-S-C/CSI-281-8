@@ -168,6 +168,7 @@ TEST_CASE( "dfs() Tests", "[graph]" ) {
     }
 }
 
+// Passing
 TEST_CASE( "bfs() Tests", "[graph]" ) {
     SECTION( "Graph w/ int tests" ) {
         Graph<int> g1 = Graph<int>();

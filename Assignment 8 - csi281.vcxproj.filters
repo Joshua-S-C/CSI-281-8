@@ -30,4 +30,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="questions.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="answers.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
