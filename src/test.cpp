@@ -99,7 +99,7 @@ TEST_CASE( "edgeExists() Tests", "[graph]" ) {
     }
 }
 
-// Not passing path.size (112) and edge exists (120)
+// Passing
 TEST_CASE( "dfs() Tests", "[graph]" ) {
     SECTION( "Graph w/ int tests" ) {
         Graph<int> g1 = Graph<int>();

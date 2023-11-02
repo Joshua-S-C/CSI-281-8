@@ -109,7 +109,7 @@ namespace csi281 {
             frontier.push(start);
             
             while (!frontier.empty()) {
-                // Node that is being evaluated, gotten from list of unexplored
+                // Node that is being evaluated from list of unexplored
                 V current = frontier.top();
                 frontier.pop();
 
@@ -117,6 +117,7 @@ namespace csi281 {
                 V _goal = goal;
 
                 // If found, just return the path
+                // Size of path is wrong becuz it's saying that a path straight from 0 to 10 exists (in the lsat index)
                 if (current == goal)
                     return pathMapToPath(explored, _goal);
 
@@ -128,11 +129,11 @@ namespace csi281 {
                     V child = *iterator;
 
                     // If they already exist: don't add to frontier
+                    auto childInQuestion = explored.find(child);
                     if (explored.find(child) != explored.end())
                         continue;
                     
-                    
-                    explored.insert({ current, child });
+                    explored.insert({ child, current });
                     frontier.push(child);
                 }
             }
