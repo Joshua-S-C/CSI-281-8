@@ -125,7 +125,7 @@ namespace csi281 {
                     V child = *iterator;
 
                     // If they already exist: don't add to frontier
-                    auto childInQuestion = explored.find(child);
+                    auto childInQuestion = explored.find(child); // Just so I can see it in the debugger
                     if (explored.find(child) != explored.end())
                         continue;
                     
