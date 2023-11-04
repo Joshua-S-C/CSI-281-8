@@ -1,9 +1,13 @@
 Joshua Sinclair Chong - Assignment 8 Answers
 
-1: 
+1: It depends. 
+If the goal is along an earlier branch / has a big degree of separation (further nodes away from the start), then depth first is likely faster, because it goes down to a node with no adjacencies along their first adjacencies. 
+If the goal is along a later branch / has a lower degree of separation, then breadth first because it will check everything adjacent to the start first, then everything 2 away from the start and so on.
 
-2:
+2: O(n). The worst case is if it has to check every element.
 
-3: 
+3: An adjacency matrix would use storage to show nodes that aren't connected (ex: having a zero to show two people aren't friends). 
+With a list, it only stores connections.``
 
-4: 
+4: This is going to be a weird example but it occured in a conversation I was having: In David Kite's class you have to write an essay about some important science concept and why it's important basically. 
+So if start with one important discovery, the nodes could be other important science concepts and the connections could exist if one discovery was fundamental for the next. So finding the degree of separation between 2 science concepts could be done using depth first.
